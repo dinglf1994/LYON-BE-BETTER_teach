@@ -10,6 +10,7 @@
 
 namespace app\index\controller;
 
+use Gregwar\Captcha\CaptchaBuilder;
 use app\index\model\Student;
 use app\index\model\Teacher;
 use think\Controller;
@@ -22,7 +23,6 @@ class Login extends Controller
 {
     const STU = 1; //学生
     const TEA = 2; //教师
-//    const TOU = 3; //游客
     protected $request;
     protected $student;
     protected $teacher;
@@ -38,11 +38,19 @@ class Login extends Controller
     {
         return $this->fetch('login');
     }
+
+    /**
+     * 登录检测
+     */
     public function checkLogin()
     {
+        $verifyCode = $this->request->post('verify', '', 'string');
         $userId = $this->request->post('userid', 0, 'int');
         $password = trim($this->request->post('passwd', '', 'string'));
         $type = $this->request->post('type','', 'int');
+        if (!$this->checkVerify($verifyCode)) {
+            $this->error('验证码错误');
+        }
         if (empty($userId) || empty($password) || empty($type)) {
             $this->error('参数错误');
         }
@@ -71,5 +79,25 @@ class Login extends Controller
         } else {
             $this->error('不存在该用户');
         }
+    }
+
+    /**
+     * 验证码生成
+     */
+    public function verify()
+    {
+        $builder = new CaptchaBuilder();
+        $builder->build()->output();
+        Session::set('verifyCode', $builder->getPhrase());
+    }
+
+    /**
+     * @param $code
+     * @return bool
+     * 验证码检测
+     */
+    public function checkVerify($code)
+    {
+        return ($code == Session::get('verifyCode') && $code != '') ? true : false;
     }
 }

@@ -4,11 +4,13 @@
  * User: lyon
  * Date: 16-12-20
  * Time: 下午3:24
+ * 后台管理首页
  */
 
 namespace app\admin\controller;
 use think\Controller;
 use think\Request;
+use think\Session;
 
 class Home extends Controller
 {
@@ -20,7 +22,7 @@ class Home extends Controller
 
     public function home()
     {
-        $this->assign('name', 'Admin');
+        $this->assign('adminName', Session::get('name'));
         return $this->fetch('home');
     }
     public function test()

@@ -9,6 +9,7 @@
 namespace app\admin\model;
 
 
+use think\Config;
 use think\Model;
 use \app\admin\repositories\SqlInterface;
 
@@ -36,11 +37,28 @@ class Admin extends Model implements SqlInterface
         }
     }
 
-    public function findAll($where, $field)
+    public function findAll($where = null, $field = null)
     {
-        // TODO: Implement findAll() method.
+        $this->_init();
+        if ($field == null) {
+            return $this->opModel->select();
+        } else {
+            return $this->opModel->where($where)->field($field)->select();
+        }
     }
 
+    public function page($where = true, $field = null)
+    {
+        $this->_init();
+        if ($field == null) {
+            $list = $this->opModel->where($where)->paginate(Config::get('paginate.list_rows'));
+        } else {
+//            $list = $this->opModel->where($where)->field($field)->paginate(Config::get('paginate.list_rows'));
+            $list = $this->opModel->where($where)->field($field)->paginate(1);
+        }
+        $page = $list->render();
+        return ['list' => $list, 'page' => $page];
+    }
     public function updateTable($where, $data)
     {
         // TODO: Implement update() method.

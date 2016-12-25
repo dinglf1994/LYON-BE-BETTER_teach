@@ -5,6 +5,7 @@ use app\admin\model\Admin;
 use think\Controller;
 use think\Request;
 use think\Session;
+use Gregwar\Captcha\CaptchaBuilder;
 
 class Index extends Controller
 {
@@ -24,8 +25,12 @@ class Index extends Controller
     }
     public function checkLogin()
     {
+        $verifyCode = $this->request->post('verify', '', 'string');
         $adminId = $this->request->post('adminid', '', 'string');
         $password = $this->request->post('password', '', 'string');
+        if (!$this->checkVerify($verifyCode)) {
+            $this->error('验证码错误');
+        }
         if (empty($adminId) || empty($password)) {
             $this->error('参数错误');
         }
@@ -53,5 +58,16 @@ class Index extends Controller
     {
         Session::clear();
         $this->success('已经退出', '/admin');
+    }
+
+    public function verify()
+    {
+        $builder = new CaptchaBuilder();
+        $builder->build()->output();
+        Session::set('verifyCode', $builder->getPhrase());
+    }
+    public function checkVerify($code)
+    {
+        return ($code == Session::get('verifyCode') && $code != '') ? true : false;
     }
 }
