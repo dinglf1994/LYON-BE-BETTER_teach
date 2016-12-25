@@ -8,6 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/admin/css/style.css">
     <!-- Font Awesome -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
     <!-- Ionicons -->
@@ -41,6 +42,17 @@
             <div class="form-group has-feedback">
                 <input type="password" name="password" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <input type="text" name="verify" class="form-control" placeholder="Verify">
+                        <span class="glyphicon glyphicon-picture form-control-feedback" style="padding-right: 40px"></span>
+                    </div>
+                    <div class="col-xs-5 verify-div">
+                        <img src="{:url('/admin/index/verify')}" id="verifyimg">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <!--<div class="col-xs-8">-->
@@ -87,6 +99,16 @@
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
+        });
+
+        // 刷新验证码
+        var verifyimg = $("#verifyimg").attr("src");
+        $("#verifyimg").click(function(){
+            if( verifyimg.indexOf('?')>0){
+                $("#verifyimg").attr("src", verifyimg+'&random='+Math.random());
+            }else{
+                $("#verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+            }
         });
     });
 </script>

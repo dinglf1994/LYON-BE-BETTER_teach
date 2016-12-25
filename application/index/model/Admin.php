@@ -7,7 +7,6 @@
  */
 
 namespace app\index\model;
-//use think\Config;
 use think\Model;
 use \app\index\repositories\SqlInterface;
 

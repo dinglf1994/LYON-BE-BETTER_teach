@@ -69,9 +69,9 @@
                                 <label class="sr-only" for="form-password">Password</label>
                                 <input type="password" name="passwd" placeholder="Password..." class="form-password form-control" id="form-password">
                             </div>
-                            <div class="radio-group">
+                            <div class="form-group">
                             <label class="radio-inline">
-                                <input type="radio" name="type" value="1"> Student
+                                <input type="radio" name="type" value="1" checked> Student
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="type" value="2"> Teacher
@@ -79,6 +79,17 @@
                             <!--<label class="radio-inline">-->
                                 <!--<input type="radio" name="type" value="3" checked> Tourist-->
                             <!--</label>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <label class="sr-only" for="form-password">Verify</label>
+                                        <input type="text" name="verify" placeholder="Verify..." class="form-password form-control" id="form-verify">
+                                    </div>
+                                    <div class="col-xs-5 verify">
+                                        <img src="{:url('index/login/verify')}" id="verifyimg">
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn">Sign in!</button>
                         </form>
@@ -116,7 +127,19 @@
 <!--[if lt IE 10]>
 <script src="/static/js/placeholder.js"></script>
 <![endif]-->
-
+<script>
+    $(function () {
+        // 刷新验证码
+        var verifyimg = $("#verifyimg").attr("src");
+        $("#verifyimg").click(function(){
+            if( verifyimg.indexOf('?')>0){
+                $("#verifyimg").attr("src", verifyimg+'&random='+Math.random());
+            }else{
+                $("#verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

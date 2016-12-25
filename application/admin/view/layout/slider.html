@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>DWM</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>{$name}</b>中心</span>
+        <span class="logo-lg"><b>DWM网站管理中心</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -211,7 +211,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{$adminName}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -219,8 +219,8 @@
                             <img src="/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {$adminName} - 管理员
+                                <small>{$time | date('Y-m-d');}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -244,7 +244,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="/admin/index/signOut" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="/admin/index/signOut" class="btn btn-default btn-flat">退出</a>
                             </div>
                         </li>
                     </ul>
@@ -264,8 +264,8 @@
                 <img src="/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>{$adminName}</p>
+                <a><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -288,6 +288,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="#"><i class="fa fa-circle-o"></i>教师基本信息</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>教师信息录入</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -299,9 +300,57 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="#"><i class="fa fa-circle-o"></i>学生基本信息</a></li>
+                    <li class="active"><a href="/admin/student"><i class="fa fa-circle-o"></i>学生信息录入</a></li>
                 </ul>
             </li>
             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>学院信息</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>院系总概</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>院校</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>院系</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>管理员信息</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="/admin/admin/adminlist/"><i class="fa fa-circle-o"></i>管理员列表</a></li>
+                    <li class="active"><a href="/admin/admin/"><i class="fa fa-circle-o"></i>添加管理员</a></li>
+                    <li class="active"><a href="/admin/admin/"><i class="fa fa-circle-o"></i>修改密码</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>站内信管理</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>发送站内信</a></li>
+                </ul>
+            </li>
+
+
+
+
+
+
+
+
+
+
+            <!--<li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     <span class="pull-right-container">
@@ -468,7 +517,7 @@
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
         </ul>
     </section>
     <!-- /.sidebar -->
