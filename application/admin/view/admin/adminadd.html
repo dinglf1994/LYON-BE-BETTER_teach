@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {block name="header"}{include file="layout/header"}{/block}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    {block name="slider"}{include file="layout/slider" /}{/block}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                管理员
+                <small>列表中心</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+                <li class="active">admin</li>
+            </ol>
+        </section>
+
+        <!--主要内容-->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">添加管理员</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form method="post" role="form" action="/admin/admin/adminadd">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">管理员ID</label>
+                                    <input type="text" name="adminid" class="form-control" id="exampleInputEmail1" placeholder="ID...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName">管理员名字</label>
+                                    <input type="text" name="adminname" class="form-control" id="exampleInputName" placeholder="Name...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">登录密码</label>
+                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkbox">管理员权限</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="auth[]" value="1" checked> 增加
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="auth[]" value="2"> 删除
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="auth[]" value="3"> 修改
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="auth[]" value="4" checked> 查看
+                                            </label>
+                                        </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <div class="col-xs-6 col-offset-2">
+                                  <button style="float: right" type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                                <div class="col-xs-6 col-offset-2">
+                                    <button style="float: left" type="reset" class="btn btn-success">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </section>
+        <!-- /主要内容 -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    {block name="footer"}{include file="layout/footer" /}{/block}
+
+</div>
+<!-- ./wrapper -->
+{block name="script"}{include file="layout/script" /}{/block}
+</body>
+</html>

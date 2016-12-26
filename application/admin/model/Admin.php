@@ -53,8 +53,8 @@ class Admin extends Model implements SqlInterface
         if ($field == null) {
             $list = $this->opModel->where($where)->paginate(Config::get('paginate.list_rows'));
         } else {
-//            $list = $this->opModel->where($where)->field($field)->paginate(Config::get('paginate.list_rows'));
-            $list = $this->opModel->where($where)->field($field)->paginate(1);
+            $list = $this->opModel->where($where)->field($field)->paginate(Config::get('paginate.list_rows'));
+//            $list = $this->opModel->where($where)->field($field)->paginate(1);
         }
         $page = $list->render();
         return ['list' => $list, 'page' => $page];
@@ -62,5 +62,18 @@ class Admin extends Model implements SqlInterface
     public function updateTable($where, $data)
     {
         // TODO: Implement update() method.
+    }
+
+    /**
+     * 插入数据
+     */
+    public function insertOne($data)
+    {
+        $this->_init();
+        if ($this->opModel->save($data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {block name="header"}{include file="layout/header"}{/block}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    {block name="slider"}{include file="layout/slider" /}{/block}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                管理员
+                <small>列表中心</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+                <li class="active">admin</li>
+            </ol>
+        </section>
+        <!--主要内容-->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><b>管理员列表</b></h3>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th>学生编号</th>
+                                    <th>学生姓名</th>
+                                    <th>学生昵称</th>
+                                    <th>性别</th>
+                                    <th>所属学院</th>
+                                    <th>所属系</th>
+                                    <th style="width: 140px">操作</th>
+                                </tr>
+
+                                {volist name="list" id='student'}
+                                <tr>
+                                    <td>{$student.snum}</td>
+                                    <td>{$student.sname}</td>
+                                    <td>{$student.snickname}</td>
+                                    {if	condition="$student.gender eq 'M'"}
+                                    <td>男</td>
+                                    {else /}
+                                    <td>女</td>
+                                    {/if}
+                                    <td>{$student.aname}</td>
+                                    <td>{$student.dname}</td>
+                                    <td>
+                                        <a href="#">
+                                            <span data-content="{$student.snum}" data-num="{$student.aid}" data-toggle="{$student.did}" class="badge bg-blue stud-show">详情</span>
+                                        </a>
+                                        <a href="#">
+                                            <span data-content="{$student.snum}" data-num="{$student.aid}" data-toggle="{$student.did}" class="badge bg-green stud-change">修改</span>
+                                        </a>
+                                        <a href="/admin/student/delete?snum={$student.snum}">
+                                            <span class="badge bg-red">删除</span>
+                                        </a>
+                                    </td>
+                                    <!--学生详细信息弹出框-->
+                                    <div class="modal fade" id="myModal{$student.snum}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">学生详细信息</h4>
+                                                </div>
+                                                <form method="post" action="/admin/student/studentUpdate" name="stu-form">
+                                                <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="txt_departmentname">学生编号</label>
+                                                            <input type="text" name="snum" readonly='true' class="form-control" id="txt_departmentname" value="{$student.snum}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="txt_parentdepartment">学生姓名</label>
+                                                            <input type="text" name="sname" class="form-control" id="txt_parentdepartment" value="{$student.sname}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="txt_departmentlevel">学生昵称</label>
+                                                            <input type="text" name="snickname" class="form-control" id="txt_departmentlevel" value="{$student.snickname}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="stu-gender-m">性别</label>
+                                                            {if	condition="$student.gender eq 'M'"}
+                                                            <input type="text" name="gender" class="form-control" id="stu-gender-m" value="男">
+                                                            {else /}
+                                                            <input type="text" name="gender" class="form-control" id="stu-gender-f" value="女">
+                                                            {/if}
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>籍贯</label>
+                                                            <input type="text" name="nation" class="form-control" id="stu-nation" value="{$student.nation}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>所属学院</label>
+                                                            <select name="academic_id" class="form-control">
+                                                                {volist name="academic" id="aca"}
+                                                                <option value="{$aca.aid}">{$aca.aname}</option>
+                                                                {/volist}
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>所属系</label>
+                                                            <select name="department_id" class="form-control">
+                                                                {volist name="department" id="dep"}
+                                                                <option value="{$dep.did}">{$dep.dname}</option>
+                                                                {/volist}
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>QQ账号</label>
+                                                            <input type="text" name="qq" class="form-control" id="stu-qq" value="{$student.qq}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>微博账号</label>
+                                                            <input type="text" name="wei" class="form-control" id="stu-wei" value="{$student.wei}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>个人格言</label>
+                                                            <textarea name="motto" class="form-control" id="stu-motto">
+                                                                {$student.motto}
+                                                            </textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>邮箱</label>
+                                                            <input type="email" name="email" class="form-control" id="stu-email" value="{$student.email}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>个人地址</label>
+                                                            <input type="text" name="addr" class="form-control" id="stu-addr" value="{$student.addr}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>标签</label>
+                                                            <textarea class="form-control" name="tags">
+                                                                {$student.tags}
+                                                            </textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>爱好</label>
+                                                            <textarea class="form-control" name="hobby">
+                                                                {$student.hobby}
+                                                            </textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>个人介绍</label>
+                                                            <textarea class="form-control" name="describe">
+                                                                {$student.describe}
+                                                            </textarea>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                                                    <button type="submit" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--.学生详细信息弹出框-->
+                                </tr>
+                                {/volist}
+
+                                </tbody></table>
+                        </div>
+                        <div class="box-footer clearfix">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+        <!-- /主要内容 -->
+
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    {block name="footer"}{include file="layout/footer" /}{/block}
+
+</div>
+<!-- ./wrapper -->
+{block name="script"}{include file="layout/script" /}{/block}
+<script>
+    $(".stud-show").click(function () {
+    $("#myModalLabel").text("学生详细信息");
+    var id ='#myModal' + $(this).attr('data-content');
+    var aid = $(this).attr('data-num');
+    var did = $(this).attr('data-toggle');
+    $("select[name='academic_id'] option").each(function () {
+        if (aid == $(this).val()) {
+            $(this).attr("selected", true)
+        }
+            });
+    $("select[name='department_id'] option").each(function () {
+        if (did == $(this).val()) {
+            $(this).attr("selected", true)
+        }
+    });
+    $(id).modal();
+    });
+    
+    $(".stud-change").click(function () {
+        $("#myModalLabel").text("修改学生信息");
+        var id ='#myModal' + $(this).attr('data-content');
+        var aid = $(this).attr('data-num');
+        var did = $(this).attr('data-toggle');
+        $("select[name='academic_id'] option").each(function () {
+            if (aid == $(this).val()) {
+                $(this).attr("selected", true)
+            }
+        });
+        $("select[name='department_id'] option").each(function () {
+            if (did == $(this).val()) {
+                $(this).attr("selected", true)
+            }
+        });
+        $(id).modal();
+    });
+</script>
+</body>
+</html>
