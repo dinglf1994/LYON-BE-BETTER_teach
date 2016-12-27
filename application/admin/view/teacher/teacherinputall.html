@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/static/css/admin/css/stu.css">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {block name="header"}{include file="layout/header"}{/block}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    {block name="slider"}{include file="layout/slider" /}{/block}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                管理员
+                <small>列表中心</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+                <li class="active">admin</li>
+            </ol>
+        </section>
+        <!--主要内容-->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">批量导入信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form role="form" method="post" enctype="multipart/form-data" action="/admin/teacher/teacherinputall">
+                            <div class="box-body">
+                                <div class="model-img">
+                                    <label>
+                                        <h5>上传xls文件样式:</h5>
+                                    </label>
+                                    <img src="/static/img/tea_info.png">
+                                </div>
+                                <div class="download-xls">
+                                    <button type="button" class="btn btn-block btn-success" onclick="window.open('/static/file/tea.template.xls')">点击下载模板文件</button>
+                                </div>
+                                <div class="form-group">
+                                    <label>请选择上传的文件</label>
+                                    <input name="stu_info" type="file" id="inputFile">
+
+                                    <p class="help-block" style="color: green">必须是.xls文件类型</p>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" id="upload" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </section>
+        <!-- /主要内容 -->
+
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    {block name="footer"}{include file="layout/footer" /}{/block}
+
+</div>
+<!-- ./wrapper -->
+{block name="script"}{include file="layout/script" /}{/block}
+<!-- Page script -->
+<script>
+    $(function () {
+        //Date picker
+        $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+        $("#stu-submit").click(function () {
+            $("#stu_info").submit();
+        })
+        //文件异步上传
+//        $('#upload').click(function () {
+//            var formData = new FormDate();
+//            formData.append("myfile", $('#inputFile').files[0]);
+//            $.ajax({
+//                url: "/admin/student/studentinputall",
+//                type: "post",
+//                data: formData,
+//                contentType: false,
+//                processData: false,
+//                success: function (data) {
+//                    if (data.status == 'true') {
+//                        alert('上传成功');
+//                    }
+//                },
+//                error: function () {
+//                    alert('上传失败');
+//                }
+//            });
+//        });
+    });
+</script>
+</body>
+</html>

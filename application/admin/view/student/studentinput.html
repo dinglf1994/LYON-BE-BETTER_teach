@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {block name="header"}{include file="layout/header"}{/block}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    {block name="slider"}{include file="layout/slider" /}{/block}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                管理员
+                <small>列表中心</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+                <li class="active">admin</li>
+            </ol>
+        </section>
+        <!--主要内容-->
+        <section class="content">
+            <!-- general form elements disabled -->
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">添加学生信息</h3>
+                </div>
+                <!-- /.box-header -->
+                <form id="stu_info" role="form" method="post" action="/admin/student/studentinput">
+                <div class="box-body">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label>学生编号</label>
+                            <input name="snum" type="text" class="form-control" placeholder="学生编号 ...">
+                        </div>
+                        <div class="form-group">
+                            <label>学生姓名</label>
+                            <input name="sname" type="text" class="form-control" placeholder="学生姓名 ...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>籍贯</label>
+                            <input name="nation" type="text" class="form-control" placeholder="籍贯 ...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>学生昵称</label>
+                            <input name="snickname" type="text" class="form-control" placeholder="学生昵称 ...">
+                            <span class="help-block">暂时可以不填写</span>
+                        </div>
+                        <div class="form-group">
+                            <label>性别</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender" id="gender-m" value="M" checked> 男
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" id="gender-f" value="F">  女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>入学时间</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <input name="enter_time" type="text" class="form-control pull-right" id="datepicker">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <div class="form-group">
+                            <label>所属学院</label>
+                            <select name="academic_id" class="form-control">
+                                {volist name="academic" id="aca"}
+                                <option value="{$aca.aid}">{$aca.aname}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>所属系</label>
+                            <select name="department_id" class="form-control">
+                                {volist name="department" id="dep"}
+                                <option value="{$dep.did}">{$dep.dname}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>QQ账号</label>
+                            <input name="qq" type="text" class="form-control" placeholder="QQ ...">
+                            <span class="help-block">可不填</span>
+                        </div>
+                        <div class="form-group">
+                            <label>微博账号</label>
+                            <input name="wei" type="text" class="form-control" placeholder="微博 ...">
+                            <span class="help-block">可不填</span>
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input name="email" type="email" class="form-control" placeholder="邮箱地址 ..." required>
+                            <span class="help-block">可不填</span>
+                        </div>
+                        <div class="form-group">
+                            <label>家庭地址</label>
+                            <input name="addr" type="text" class="form-control" placeholder="家庭地址 ...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>初始密码</label>
+                            <input name="password" type="text" class="form-control" value="123456" readonly>
+                        </div>
+                        <!-- textarea -->
+                        <div class="form-group">
+                            <label>个人格言</label>
+                            <textarea name="motto" class="form-control" rows="3" placeholder="个人格言 ..."></textarea>
+                            <span class="help-block">可不填</span>
+                        </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button id="stu-submit" type="button" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </section>
+        <!-- /主要内容 -->
+
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    {block name="footer"}{include file="layout/footer" /}{/block}
+
+</div>
+<!-- ./wrapper -->
+{block name="script"}{include file="layout/script" /}{/block}
+<script src="/static/js/stud.input.js"></script>
+<!-- Page script -->
+</body>
+</html>

@@ -48,71 +48,71 @@
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <th>学生编号</th>
-                                    <th>学生姓名</th>
-                                    <th>学生昵称</th>
+                                    <th>教师编号</th>
+                                    <th>教师姓名</th>
+                                    <th>教师昵称</th>
                                     <th>性别</th>
                                     <th>所属学院</th>
                                     <th>所属系</th>
                                     <th style="width: 140px">操作</th>
                                 </tr>
 
-                                {volist name="list" id='student'}
+                                {volist name="list" id='teacher'}
                                 <tr>
-                                    <td>{$student.snum}</td>
-                                    <td>{$student.sname}</td>
-                                    <td>{$student.snickname}</td>
-                                    {if	condition="$student.gender eq 'M'"}
+                                    <td>{$teacher.tnum}</td>
+                                    <td>{$teacher.tname}</td>
+                                    <td>{$teacher.tnickname}</td>
+                                    {if	condition="$teacher.gender eq 'M'"}
                                     <td>男</td>
                                     {else /}
                                     <td>女</td>
                                     {/if}
-                                    <td>{$student.aname}</td>
-                                    <td>{$student.dname}</td>
+                                    <td>{$teacher.aname}</td>
+                                    <td>{$teacher.dname}</td>
                                     <td>
                                         <a href="#">
-                                            <span data-content="{$student.snum}" data-num="{$student.aid}" data-toggle="{$student.did}" class="badge bg-blue stud-show">详情</span>
+                                            <span data-content="{$teacher.tnum}" data-num="{$teacher.aid}" data-toggle="{$teacher.did}" class="badge bg-blue stud-show">详情</span>
                                         </a>
                                         <a href="#">
-                                            <span data-content="{$student.snum}" data-num="{$student.aid}" data-toggle="{$student.did}" class="badge bg-green stud-change">修改</span>
+                                            <span data-content="{$teacher.tnum}" data-num="{$teacher.aid}" data-toggle="{$teacher.did}" class="badge bg-green stud-change">修改</span>
                                         </a>
-                                        <a href="/admin/student/delete?snum={$student.snum}" onclick="return confirm('确认删除学生信息吗?')">
+                                        <a href="/admin/teacher/delete?tnum={$teacher.tnum}" onclick="return confirm('确认删除教师信息吗?')">
                                             <span class="badge bg-red">删除</span>
                                         </a>
                                     </td>
                                     <!--学生详细信息弹出框-->
-                                    <div class="modal fade" id="myModal{$student.snum}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal fade" id="myModal{$teacher.tnum}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                                     <h4 class="modal-title" id="myModalLabel">学生详细信息</h4>
                                                 </div>
-                                                <form method="post" action="/admin/student/studentUpdate" name="stu-form">
+                                                <form method="post" action="/admin/teacher/teacherUpdate" name="stu-form">
                                                 <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label for="txt_departmentname">学生编号</label>
-                                                            <input type="text" name="snum" readonly='true' class="form-control" id="txt_departmentname" value="{$student.snum}">
+                                                            <label for="txt_departmentname">教师编号</label>
+                                                            <input type="text" name="tnum" readonly='true' class="form-control" id="txt_departmentname" value="{$teacher.tnum}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="txt_parentdepartment">学生姓名</label>
-                                                            <input type="text" name="sname" class="form-control" id="txt_parentdepartment" value="{$student.sname}">
+                                                            <label for="txt_parentdepartment">教师姓名</label>
+                                                            <input type="text" name="tname" class="form-control" id="txt_parentdepartment" value="{$teacher.tname}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="txt_departmentlevel">学生昵称</label>
-                                                            <input type="text" name="snickname" class="form-control" id="txt_departmentlevel" value="{$student.snickname}">
+                                                            <label for="txt_departmentlevel">教师昵称</label>
+                                                            <input type="text" name="tnickname" class="form-control" id="txt_departmentlevel" value="{$teacher.tnickname}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="stu-gender-m">性别</label>
-                                                            {if	condition="$student.gender eq 'M'"}
-                                                            <input type="text" name="gender" class="form-control" id="stu-gender-m" value="男">
+                                                            <label for="tea-gender-m">性别</label>
+                                                            {if	condition="$teacher.gender eq 'M'"}
+                                                            <input type="text" name="gender" class="form-control" id="tea-gender-m" value="男">
                                                             {else /}
-                                                            <input type="text" name="gender" class="form-control" id="stu-gender-f" value="女">
+                                                            <input type="text" name="gender" class="form-control" id="tea-gender-f" value="女">
                                                             {/if}
                                                         </div>
                                                         <div class="form-group">
                                                             <label>籍贯</label>
-                                                            <input type="text" name="nation" class="form-control" id="stu-nation" value="{$student.nation}">
+                                                            <input type="text" name="nation" class="form-control" id="stu-nation" value="{$teacher.nation}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>所属学院</label>
@@ -132,42 +132,42 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>QQ账号</label>
-                                                            <input type="text" name="qq" class="form-control" id="stu-qq" value="{$student.qq}">
+                                                            <input type="text" name="qq" class="form-control" id="stu-qq" value="{$teacher.qq}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>微博账号</label>
-                                                            <input type="text" name="wei" class="form-control" id="stu-wei" value="{$student.wei}">
+                                                            <input type="text" name="wei" class="form-control" id="stu-wei" value="{$teacher.wei}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>个人格言</label>
                                                             <textarea name="motto" class="form-control" id="stu-motto">
-                                                                {$student.motto}
+                                                                {$teacher.motto}
                                                             </textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>邮箱</label>
-                                                            <input type="email" name="email" class="form-control" id="stu-email" value="{$student.email}">
+                                                            <input type="email" name="email" class="form-control" id="stu-email" value="{$teacher.email}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>个人地址</label>
-                                                            <input type="text" name="addr" class="form-control" id="stu-addr" value="{$student.addr}">
+                                                            <input type="text" name="addr" class="form-control" id="stu-addr" value="{$teacher.addr}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>标签</label>
                                                             <textarea class="form-control" name="tags">
-                                                                {$student.tags}
+                                                                {$teacher.tags}
                                                             </textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>爱好</label>
                                                             <textarea class="form-control" name="hobby">
-                                                                {$student.hobby}
+                                                                {$teacher.hobby}
                                                             </textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>个人介绍</label>
                                                             <textarea class="form-control" name="describe">
-                                                                {$student.describe}
+                                                                {$teacher.describe}
                                                             </textarea>
                                                         </div>
                                                 </div>
@@ -206,7 +206,7 @@
 {block name="script"}{include file="layout/script" /}{/block}
 <script>
     $(".stud-show").click(function () {
-    $("#myModalLabel").text("学生详细信息");
+    $("#myModalLabel").text("教师详细信息");
     var id ='#myModal' + $(this).attr('data-content');
     var aid = $(this).attr('data-num');
     var did = $(this).attr('data-toggle');
@@ -224,7 +224,7 @@
     });
     
     $(".stud-change").click(function () {
-        $("#myModalLabel").text("修改学生信息");
+        $("#myModalLabel").text("修改教师信息");
         var id ='#myModal' + $(this).attr('data-content');
         var aid = $(this).attr('data-num');
         var did = $(this).attr('data-toggle');

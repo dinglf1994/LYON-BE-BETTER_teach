@@ -50,12 +50,12 @@ class Student extends Model implements SqlInterface
      * @return array
      * 学生信息分页显示
      */
-    public function page($where = true, $field = '*')
+    public function page($where = true)
     {
         $this->_init();
         $list = $this->opModel->view('student', '*')
-            ->view('academy', '*', 'academy.aid = student.aid')
-            ->view('department', '*', 'department.did = student.did')
+            ->view('academy', ['aid' => 'aaid', 'aname'], 'academy.aid = student.aid')
+            ->view('department', ['did' => 'ddid', 'dname'], 'department.did = student.did')
             ->where($where)
             ->paginate(Config::get('paginate.list_rows'));
         $page = $list->render();
@@ -89,12 +89,32 @@ class Student extends Model implements SqlInterface
             return false;
         }
     }
+
     /**
-     * 更新学生信息
+     * 添加学生信息
      * @param $data
      * @return void
      */
-    public function saveArray()
+    public function saveArray($data)
     {
+        $this->_init();
+        if ($this->opModel->saveAll($data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 添加一条学生信息
+     */
+    public function saveOne($data)
+    {
+        $this->_init();
+        if ($this->opModel->save($data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
