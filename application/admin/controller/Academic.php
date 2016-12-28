@@ -16,6 +16,7 @@ class Academic extends Controller
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
+        isLogin();
     }
 
     /**

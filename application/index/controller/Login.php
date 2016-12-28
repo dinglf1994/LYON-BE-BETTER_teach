@@ -68,7 +68,7 @@ class Login extends Controller
         $where = ['snum' => $userId];
         $field = ['snum', 'snickname', 'spasswd'];
         $customer = $model->findOne($where, $field);
-        if (!empty($result)) {
+        if (!empty($customer)) {
             if (password_verify($password, $customer['spasswd'])) {
                 Session::set('uid', $userId);
                 Session::set('nickname', $customer['snickname']);

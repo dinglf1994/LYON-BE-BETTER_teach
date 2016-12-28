@@ -24,6 +24,7 @@ class Teacher extends Controller
     public function __construct(Request $request = null, Teach $teacher, Academy $academy, Department $department)
     {
         parent::__construct($request);
+        isLogin();
         $this->teacher = $teacher;
         $this->academy = $academy;
         $this->department = $department;
@@ -172,6 +173,9 @@ class Teacher extends Controller
      */
     protected function phpExcelIoFactory($file)
     {
+
+        set_time_limit(0);
+
         $file = ROOT_PATH . 'public' . DS . 'uploads' . DS . $file;
         if (file_exists($file)) {
             $mReader = IOFactory::createReader('Excel5');

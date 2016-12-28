@@ -80,7 +80,12 @@
         <div class="userinfo">
             <div class="user">
                 <ul>
-                    <li><a href="#"><img src="/static/img/face/user-pic.png" title="user-name" /><span>万波</span></a> <a href="#"><span>个人中心</span></a></li>
+                    <li>
+                        <a href="#"><img src="/static/img/face/user-pic.png" title="user-name" /><span>{$_SESSION['nickname'] ? $_SESSION['nickname'] : '游客'}</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span>个人中心</span></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -88,20 +93,25 @@
     </div>
 </div>
 <!---//End-header---->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >Lyon</a></div>
+<div class="copyrights">Collect from <a href="#" >Lyon</a></div>
 <!---start-content---->
 <div class="content">
     <div class="wrap">
         <div id="main" role="main">
             <ul id="tiles">
                 <!-- These are our grid blocks -->
-                <li onClick="location.href='/index/infodetail/detail';">
+                {volist name='data' id="teacher" key='k'}
+                <li data-num="{$teacher.id}" onClick="location.href='/index/infodetail/detail';">
+                    {if condition="$k%2 eq 0"}
                     <img src="/static/img/face/img1.jpg" width="200" height="200">
+                    {else /}
+                    <img src="/static/img/face/img6.jpg" width="200" height="300">
+                    {/if}
                     <div class="post-info">
                         <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
+                            <h3><a href="#">{$teacher.tnickname}</a></h3>
+                            <span><a href="#"><label> </label>{$teacher.addr}</a></span>
+                            <p>{$teacher.describe}</p>
                         </div>
                         <div class="post-info-rate-share">
                             <div class="rateit">
@@ -114,217 +124,7 @@
                         </div>
                     </div>
                 </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img2.jpg" width="200" height="299">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img3.jpg" width="200" height="214">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img4.jpg" width="200" height="333">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <!----//--->
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img4.jpg" width="200" height="333">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img3.jpg" width="200" height="214">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img2.jpg" width="200" height="299">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img1.jpg" width="200" height="200">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <!----//--->
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img1.jpg" width="200" height="200">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img2.jpg" width="200" height="299">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img3.jpg" width="200" height="214">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
-                <li onClick="location.href='single-page.html';">
-                    <img src="/static/img/face/img4.jpg" width="200" height="333">
-                    <div class="post-info">
-                        <div class="post-basic-info">
-                            <h3><a href="#">Animation films</a></h3>
-                            <span><a href="#"><label> </label>Movies</a></span>
-                            <p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-                        </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
-                            </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                </li>
+                {/volist}
                 <!-- End of grid blocks -->
             </ul>
         </div>
@@ -372,9 +172,64 @@
 
             if (closeToBottom) {
                 // Get the first then items from the grid, clone them, and add them to the bottom of the grid
-                var $items = $('li', $tiles),
-                    $firstTen = $items.slice(0, 10);
-                $tiles.append($firstTen.clone());
+                var $length = $('#tiles li').length;
+                var $teachId = $('#tiles li:last-child').attr('data-num');
+                console.info($teachId);
+                $.ajax({
+                    type: "post",
+                    url: "/index/index/waterpull",
+                    data: {"begin": $length, "num": "4"},
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 1) {
+                            html(result);
+                        } else {
+                            console.info('数据结束');
+                        }
+                    },
+                    error: function () {
+                        console.info('出错');
+                    }
+                });
+                function html($data) {
+//                    console.info($data.code);
+                    var $num = $data.msg.length;
+                    var waterHtml = '';
+                    for (var i = 0; i < $num; i++) {
+                        waterHtml += '<li data-num="' +
+                            $data.msg[i].id +
+                            '" onclick="location.href=' +
+                            '\'/index/infodetail/detail\';' +
+                            '"><img src="/static/img/face/img6.jpg" width="200" height="200">' +
+                            '<div class="post-info">' +
+                            '<div class="post-basic-info">' +
+                            '<h3><a href="#">' +
+                            $data.msg[i].tnickname +
+                            '</a></h3>' +
+                            '<span><a href="#"><label> </label>' +
+                            $data.msg[i].addr +
+                            '</a></span>' +
+                            '<p>' +
+                            $data.msg[i].describe +
+                            '</p>' +
+                            '</div>' +
+                            '<div class="post-info-rate-share">' +
+                            '<div class="rateit">' +
+                            '<span> </span>' +
+                            '</div>' +
+                            '<div class="post-share">' +
+                            '<span> </span>' +
+                            '</div>' +
+                            '<div class="clear"> </div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</li>';
+                    }
+                    $tiles.append(waterHtml);
+                }
+//                var $items = $('li', $tiles);
+//                    $firstTen = $items.slice(0, 4);
+//                $tiles.append($firstTen.clone());
 
                 applyLayout();
             }

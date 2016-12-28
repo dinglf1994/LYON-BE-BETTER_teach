@@ -7,6 +7,7 @@
  */
 return array(
     'session' => [
+        'expire'     => '1',
         'prefix'     => '',
         'type'       => '',
         'auto_start' => true

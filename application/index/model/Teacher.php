@@ -10,14 +10,14 @@ namespace app\index\model;
 
 
 use app\index\repositories\SqlInterface;
-use think\console\command\make\Model;
+use think\Model;
 
 class Teacher extends Model implements SqlInterface
 {
-    protected $model;
+    protected $opModel;
     public function _init()
     {
-        $this->model = new Teacher();
+        $this->opModel = new Teacher();
     }
     public function _checkSql($sql)
     {
@@ -39,5 +39,11 @@ class Teacher extends Model implements SqlInterface
     public function updateTable($where, $data)
     {
         // TODO: Implement updateTable() method.
+    }
+
+    public function findForWaterPull($begin, $end)
+    {
+        $this->_init();
+        return $this->opModel->where(true)->order('id')->limit($begin, $end)->select();
     }
 }

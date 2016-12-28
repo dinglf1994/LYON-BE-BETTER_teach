@@ -21,6 +21,7 @@ class Admin extends Controller
     public function __construct(Request $request = null, Adminer $admin)
     {
         parent::__construct($request);
+        isLogin();
         $this->request = $request;
         $this->admin = $admin;
     }
