@@ -5,7 +5,7 @@
     <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
     <link href="/static/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="/static/images/fav-icon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/face/fav-icon.png" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--webfonts-->
     <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>-->
@@ -15,6 +15,7 @@
         <!-- //Global CSS for the page and tiles -->
         <!---start-click-drop-down-menu----->
         <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
     <!----start-dropdown--->
     <script type="text/javascript">
         var $ = jQuery.noConflict();
@@ -46,8 +47,8 @@
 <div class="header">
     <div class="wrap">
         <div class="logo">
-            <!--<a href="home.html"><img src="/static/img/face/logo.png" title="pinbal" /></a>-->
-            <span class="glyphicon glyphicon-asterisk"></span>今日最佳
+            <a href="/index/index/home"><img src="/static/img/face/logo.png" title="pinbal" /></a>
+            <!--<span class="glyphicon glyphicon-asterisk"></span>今日最佳-->
         </div>
         <div class="nav-icon">
             <a href="#" class="right_bt" id="activator"><span> </span> </a>
@@ -81,11 +82,20 @@
             <div class="user">
                 <ul>
                     <li>
-                        <a href="#"><img src="/static/img/face/user-pic.png" title="user-name" /><span>{$_SESSION['nickname'] ? $_SESSION['nickname'] : '游客'}</span></a>
+                        <a href="/index/usercenter"><img src="/static/img/face/user-pic.png" title="user-name" /><span>{$_SESSION['nickname'] ? $_SESSION['nickname'] : '游客'}</span></a>
+                    </li>
+                    {if condition="!empty($_SESSION['nickname'])"}
+                    <li>
+                        <a href="/index/usercenter"><span>个人中心</span></a>
                     </li>
                     <li>
-                        <a href="#"><span>个人中心</span></a>
+                        <a href="/index/login/indexexit"><span>退出</span></a>
                     </li>
+                    {else /}
+                    <li>
+                        <a href="/index/login/login"><span>登录</span></a>
+                    </li>
+                    {/if}
                 </ul>
             </div>
         </div>
@@ -101,17 +111,17 @@
             <ul id="tiles">
                 <!-- These are our grid blocks -->
                 {volist name='data' id="teacher" key='k'}
-                <li data-num="{$teacher.id}" onClick="location.href='/index/infodetail/detail';">
+                <li data-num="{$teacher.id}" onClick="location.href='/index/infodetail/detail?tid={$teacher.id}';">
                     {if condition="$k%2 eq 0"}
                     <img src="/static/img/face/img1.jpg" width="200" height="200">
                     {else /}
-                    <img src="/static/img/face/img6.jpg" width="200" height="300">
+                    <img src="/static/img/face/img6.jpg" width="200" height="299">
                     {/if}
                     <div class="post-info">
                         <div class="post-basic-info">
                             <h3><a href="#">{$teacher.tnickname}</a></h3>
-                            <span><a href="#"><label> </label>{$teacher.addr}</a></span>
-                            <p>{$teacher.describe}</p>
+                            <span><a href="http://www.buct.edu.cn"><label> </label>{$teacher.addr}</a></span>
+                            <p>{$teacher.motto}</p>
                         </div>
                         <div class="post-info-rate-share">
                             <div class="rateit">
@@ -181,6 +191,7 @@
                     data: {"begin": $length, "num": "4"},
                     dataType: "json",
                     success: function (result) {
+                        console.info('111');
                         if (result.code == 1) {
                             html(result);
                         } else {
@@ -199,7 +210,9 @@
                         waterHtml += '<li data-num="' +
                             $data.msg[i].id +
                             '" onclick="location.href=' +
-                            '\'/index/infodetail/detail\';' +
+                            '\'/index/infodetail/detail?tid=' +
+                            $data.msg[i].id +
+                            '\';' +
                             '"><img src="/static/img/face/img6.jpg" width="200" height="200">' +
                             '<div class="post-info">' +
                             '<div class="post-basic-info">' +
@@ -210,7 +223,7 @@
                             $data.msg[i].addr +
                             '</a></span>' +
                             '<p>' +
-                            $data.msg[i].describe +
+                            $data.msg[i].motto +
                             '</p>' +
                             '</div>' +
                             '<div class="post-info-rate-share">' +

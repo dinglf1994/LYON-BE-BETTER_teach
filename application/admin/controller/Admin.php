@@ -48,7 +48,6 @@ class Admin extends Controller
     {
         if (!empty($this->request->post())) {
             $data = $this->param();
-//            var_dump($data);
             if ($this->admin->insertOne($data)) {
                 $this->success('添加成功');
             } else {
@@ -77,6 +76,45 @@ class Admin extends Controller
     {
 
     }
+
+    /**
+     * 删除管理员
+     */
+    public function delete()
+    {
+        if (!empty($this->request->get())) {
+            $aid = $this->request->get('aid');
+            $where = ['aid' => $aid];
+            if ($this->admin->deleteOne($where)) {
+                $this->success('删除成功');
+            } else {
+                $this->error('抱歉,删除失败');
+            }
+        } else {
+            $this->error('抱歉,删除失败');
+        }
+    }
+
+    public function adminUpdate()
+    {
+        if (!empty($this->request->post())) {
+            $data = $this->param();
+            if (empty($data['passwd'])) {
+                unset($data['passwd']);
+            }
+            $where = ['aid' => $data['aid']];
+            unset($data['aid']);
+            unset($data['register_time']);
+            if ($this->admin->updateOne($where,$data)) {
+                $this->success('更新成功');
+            } else {
+                $this->error('更新失败');
+            }
+        } else {
+            $this->error('抱歉,更新失败');
+        }
+    }
+
     /**
      * 过滤数据
      */

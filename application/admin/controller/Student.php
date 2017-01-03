@@ -149,7 +149,7 @@ class Student extends Controller
             $stu['enter_time'] = $this->request->post('enter_time');
         }
         if ($this->request->post('password') != '') {
-            $stu['spasswd'] = password_hash($this->request->port('password'), PASSWORD_DEFAULT);
+            $stu['spasswd'] = password_hash(intval($this->request->post('password')), PASSWORD_DEFAULT);
         }
         $stu['nation'] = trim($this->request->post('nation', '', 'string'));
         $stu['aid'] = intval($this->request->post('academic_id', '', 'string'));

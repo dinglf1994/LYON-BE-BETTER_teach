@@ -1,0 +1,63 @@
+
+<!-- jQuery 2.2.3 -->
+<script src="/static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<!-- Morris.js charts -->
+<script>
+    $(function () {
+        $evas = $('#eva');
+        $('#eva-sub').click(function () {
+                if ($("#eva-id").val() != '') {
+                    var $myDate = new Date();
+                    var $time=$myDate.toLocaleString();
+                    var $content = $('#content').val().replace(/\n/g,"<br/>");
+                    var $sid = $('#eva-id').val();
+                    var $tid = $('#eva-tid').val();
+                    var $name = $('#eva-name').val();
+                    $.ajax({
+                        type: "post",
+                        url: "/index/infodetail/updateEvaluate",
+                        data: {"sid": $sid, "tid": $tid, "content": $.trim($content), "time": $time},
+                        dataType: "json",
+                        success: function (result) {
+                            console.info(result);
+                            if (result.code == 1) {
+//                            html(result);
+                            } else {
+                                console.info('数据结束');
+                            }
+                        },
+                        error: function () {
+                            console.info('出错');
+                        }
+                    });
+                    if ($.trim($content) != '') {
+                        $html = '<div class="grid1_of_2"> ' +
+                            '<div class="grid_img"> ' +
+                            '<a href=""><img src="/static/img/face/pic10.jpg" alt=""></a> ' +
+                            '</div> ' +
+                            '<div class="grid_text"> ' +
+                            '<h4 class="style1 list"><a href="#">' +
+                            $name +
+                            '</a></h4> ' +
+                            '<h3 class="style">' +
+                            $time +
+                            '</h3> ' +
+                            '<p class="para top">' +
+                            $content +
+                            '</p> ' +
+                            '<a href="" class="btn1">Click to Reply</a> ' +
+                            '</div> ' +
+                            '<div class="clear"></div> ' +
+                            '</div>';
+                        console.info($time);
+                        $evas.append($html);
+                        $('#content').val('');
+                    }
+                } else {
+                    alert('登录就能评论');
+                }
+            });
+    });
+</script>

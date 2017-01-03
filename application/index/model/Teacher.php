@@ -15,9 +15,11 @@ use think\Model;
 class Teacher extends Model implements SqlInterface
 {
     protected $opModel;
-    public function _init()
+    protected $table;
+    public function _init($table='dwm_teacher')
     {
         $this->opModel = new Teacher();
+        $this->table = $table;
     }
     public function _checkSql($sql)
     {
@@ -27,9 +29,9 @@ class Teacher extends Model implements SqlInterface
     {
         $this->_init();
         if ($field == null) {
-            return $this->model->where($where)->find();
+            return $this->opModel->where($where)->find();
         } else {
-            return $this->model->where($where)->field($field)->find();
+            return $this->opModel->where($where)->field($field)->find();
         }
     }
     public function findAll($where, $field)

@@ -56,13 +56,15 @@ class Login extends Controller
         }
         switch ($type)
         {
-            case self::STU : $this->canLogin($this->student, $userId, $password);
+            case self::STU :
+                $this->sCanLogin($this->student, $userId, $password);
                 break;
-            case self::TEA : $this->canLogin($this->teacher, $userId, $password);
+            case self::TEA :
+                $this->tCanLogin($this->teacher, $userId, $password);
                 break;
         }
     }
-    private function canLogin($model, $userId, $password)
+    private function sCanLogin($model, $userId, $password)
     {
         $userId = intval($userId);
         $where = ['snum' => $userId];
@@ -72,6 +74,7 @@ class Login extends Controller
             if (password_verify($password, $customer['spasswd'])) {
                 Session::set('uid', $userId);
                 Session::set('nickname', $customer['snickname']);
+                Session::set('role', 1);
                 $this->success('登录成功', '/index/index/home');
             } else {
                 $this->error('密码错误');
@@ -81,6 +84,25 @@ class Login extends Controller
         }
     }
 
+    private function tCanLogin($model, $userId, $password)
+    {
+        $userId = intval($userId);
+        $where = ['tnum' => $userId];
+        $field = ['tnum', 'tnickname', 'spasswd'];
+        $customer = $model->findOne($where, $field);
+        if (!empty($customer)) {
+            if (password_verify($password, $customer['spasswd'])) {
+                Session::set('uid', $userId);
+                Session::set('nickname', $customer['tnickname']);
+                Session::set('role', 2);
+                $this->success('登录成功', '/index/index/home');
+            } else {
+                $this->error('密码错误');
+            }
+        } else {
+            $this->error('不存在该用户');
+        }
+    }
     /**
      * 验证码生成
      */
@@ -99,5 +121,10 @@ class Login extends Controller
     public function checkVerify($code)
     {
         return ($code == Session::get('verifyCode') && $code != '') ? true : false;
+    }
+    public function indexExit()
+    {
+        Session::clear();
+        $this->success('退出成功,正在跳转主页', '/index/index/home');
     }
 }

@@ -22,8 +22,6 @@
                 <small>列表中心</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-                <li class="active">admin</li>
             </ol>
         </section>
         <!--主要内容-->
@@ -80,110 +78,117 @@
                                             <span class="badge bg-red">删除</span>
                                         </a>
                                     </td>
-                                    <!--学生详细信息弹出框-->
-                                    <div class="modal fade" id="myModal{$student.snum}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">学生详细信息</h4>
-                                                </div>
-                                                <form method="post" action="/admin/student/studentUpdate" name="stu-form">
+                                </tr>
+
+
+                                <!--学生详细信息弹出框-->
+                                <div class="modal fade" id="myModal{$student.snum}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">学生详细信息</h4>
+                                            </div>
+                                            <form method="post" action="/admin/student/studentUpdate" name="stu-form">
                                                 <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <label for="txt_departmentname">学生编号</label>
-                                                            <input type="text" name="snum" readonly='true' class="form-control" id="txt_departmentname" value="{$student.snum}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="txt_parentdepartment">学生姓名</label>
-                                                            <input type="text" name="sname" class="form-control" id="txt_parentdepartment" value="{$student.sname}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="txt_departmentlevel">学生昵称</label>
-                                                            <input type="text" name="snickname" class="form-control" id="txt_departmentlevel" value="{$student.snickname}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="stu-gender-m">性别</label>
-                                                            {if	condition="$student.gender eq 'M'"}
-                                                            <input type="text" name="gender" class="form-control" id="stu-gender-m" value="男">
-                                                            {else /}
-                                                            <input type="text" name="gender" class="form-control" id="stu-gender-f" value="女">
-                                                            {/if}
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>籍贯</label>
-                                                            <input type="text" name="nation" class="form-control" id="stu-nation" value="{$student.nation}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>所属学院</label>
-                                                            <select name="academic_id" class="form-control">
-                                                                {volist name="academic" id="aca"}
-                                                                <option value="{$aca.aid}">{$aca.aname}</option>
-                                                                {/volist}
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>所属系</label>
-                                                            <select name="department_id" class="form-control">
-                                                                {volist name="department" id="dep"}
-                                                                <option value="{$dep.did}">{$dep.dname}</option>
-                                                                {/volist}
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>QQ账号</label>
-                                                            <input type="text" name="qq" class="form-control" id="stu-qq" value="{$student.qq}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>微博账号</label>
-                                                            <input type="text" name="wei" class="form-control" id="stu-wei" value="{$student.wei}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>个人格言</label>
-                                                            <textarea name="motto" class="form-control" id="stu-motto">
+                                                    <div class="form-group">
+                                                        <label for="txt_departmentname">学生编号</label>
+                                                        <input type="text" name="snum" readonly='true' class="form-control" id="txt_departmentname" value="{$student.snum}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="txt_parentdepartment">学生姓名</label>
+                                                        <input type="text" name="sname" class="form-control" id="txt_parentdepartment" value="{$student.sname}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="txt_departmentlevel">学生昵称</label>
+                                                        <input type="text" name="snickname" class="form-control" id="txt_departmentlevel" value="{$student.snickname}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="stu-gender-m">性别</label>
+                                                        {if	condition="$student.gender eq 'M'"}
+                                                        <input type="text" name="gender" class="form-control" id="stu-gender-m" value="男">
+                                                        {else /}
+                                                        <input type="text" name="gender" class="form-control" id="stu-gender-f" value="女">
+                                                        {/if}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>籍贯</label>
+                                                        <input type="text" name="nation" class="form-control" id="stu-nation" value="{$student.nation}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>所属学院</label>
+                                                        <select name="academic_id" class="form-control">
+                                                            {volist name="academic" id="aca"}
+                                                            <option value="{$aca.aid}">{$aca.aname}</option>
+                                                            {/volist}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>所属系</label>
+                                                        <select name="department_id" class="form-control">
+                                                            {volist name="department" id="dep"}
+                                                            <option value="{$dep.did}">{$dep.dname}</option>
+                                                            {/volist}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>QQ账号</label>
+                                                        <input type="text" name="qq" class="form-control" id="stu-qq" value="{$student.qq}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>微博账号</label>
+                                                        <input type="text" name="wei" class="form-control" id="stu-wei" value="{$student.wei}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>个人格言</label>
+                                                        <textarea name="motto" class="form-control" id="stu-motto">
                                                                 {$student.motto}
                                                             </textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>邮箱</label>
-                                                            <input type="email" name="email" class="form-control" id="stu-email" value="{$student.email}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>个人地址</label>
-                                                            <input type="text" name="addr" class="form-control" id="stu-addr" value="{$student.addr}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>标签</label>
-                                                            <textarea class="form-control" name="tags">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>邮箱</label>
+                                                        <input type="email" name="email" class="form-control" id="stu-email" value="{$student.email}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>个人地址</label>
+                                                        <input type="text" name="addr" class="form-control" id="stu-addr" value="{$student.addr}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>标签</label>
+                                                        <textarea class="form-control" name="tags">
                                                                 {$student.tags}
                                                             </textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>爱好</label>
-                                                            <textarea class="form-control" name="hobby">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>爱好</label>
+                                                        <textarea class="form-control" name="hobby">
                                                                 {$student.hobby}
                                                             </textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>个人介绍</label>
-                                                            <textarea class="form-control" name="describe">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>个人介绍</label>
+                                                        <textarea class="form-control" name="describe">
                                                                 {$student.describe}
                                                             </textarea>
-                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>登录密码</label>
+                                                        <input type="text" name="password" class="form-control" id="stu-passwd" value="">
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
                                                     <button type="submit" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
                                                 </div>
-                                                </form>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
-                                    <!--.学生详细信息弹出框-->
-                                </tr>
-                                {/volist}
+                                </div>
+                                <!--.学生详细信息弹出框-->
 
-                                </tbody></table>
+                                {/volist}
+                                </tbody>
+                            </table>
                         </div>
                         <div class="box-footer clearfix">
                             {$page}
