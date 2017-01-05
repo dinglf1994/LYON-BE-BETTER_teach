@@ -55,6 +55,8 @@ class InfoDetail extends Controller
             $data['etime'] = date('Y-m-d H:i:s');
             if ($data['eid'] != '' && $data['tid'] != '' && $data['content'] != '') {
                 $this->tEvaluate->insertEvaluate($data);
+                $data = ['code' => 1, 'data' => 'success'];
+                return $data;
             }
         } else {
             $data = ['code' => 2, 'data' => 'error'];

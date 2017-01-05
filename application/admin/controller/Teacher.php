@@ -183,7 +183,7 @@ class Teacher extends Controller
             $sheet = $phpExcel->getSheet();
             //取得表格行数
             $highestRow = $sheet->getHighestRow();
-            //取得总列数
+
 
             //获取所有信息
             $student = [];

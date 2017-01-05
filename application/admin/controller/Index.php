@@ -56,7 +56,7 @@ class Index extends Controller
     }
     public function signOut()
     {
-        Session::clear();
+        Session::delete(['aid', 'name']);
         $this->success('已经退出', '/admin');
     }
 

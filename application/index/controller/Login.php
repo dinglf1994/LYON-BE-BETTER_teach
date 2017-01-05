@@ -124,7 +124,7 @@ class Login extends Controller
     }
     public function indexExit()
     {
-        Session::clear();
+        Session::delete(['uid', 'nickname']);
         $this->success('退出成功,正在跳转主页', '/index/index/home');
     }
 }
